@@ -30,16 +30,20 @@ public class CurrencyProblem {
 		List<Currency> result = new ArrayList<Currency>();
 		double sum = 0;		
 		
-		while ( !queue.isEmpty() ) {
+		while ( !queue.isEmpty() && sum < change) {
 			Currency c = queue.poll();
 			
-			if ( (sum + c.getValue()) <= change ) {
+			if ( isFeasible(change, sum, c) ) {
 				sum += c.getValue();
 				result.add(c);
 			}
 		}
 		
 		return result;
+	}
+
+	private static boolean isFeasible(double change, double sum, Currency c) {
+		return (sum + c.getValue()) <= change;
 	}
 
 	private static void printResult(List<Currency> result) {
