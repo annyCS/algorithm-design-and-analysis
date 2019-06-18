@@ -38,15 +38,26 @@ public class DSTeam {
 		
 		double acumWeight = 0;
 		double acumProtection = 0;
+		Queue<String> colaNombres = new PriorityQueue<String>();
 		
 		while ( !queue.isEmpty() && acumWeight < maxWeight) {
 			Armor a = queue.poll();
 			
 			if (acumWeight + a.getWeight() > maxWeight) {		// sobre pasa peso mochila, se parte el objeto
-				
+				acumProtection += ((maxWeight - acumWeight) * a.getProtection() ) / a.getWeight();
 			}
+			else {
+				acumWeight += a.getWeight();
+				acumProtection += a.getProtection();
+			}
+			
+			colaNombres.add(a.getName());
 		}
 		
+		System.out.println(String.format("%.2f", acumProtection));
+		while( !colaNombres.isEmpty() ) {
+			System.out.println(colaNombres.remove());
+		}
 	}
 
 	public static class Armor implements Comparable<Armor> {

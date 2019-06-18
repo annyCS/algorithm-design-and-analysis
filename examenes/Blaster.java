@@ -66,23 +66,25 @@ public class Blaster {
 			cola.add(e);
 		}
 		
-		while ( nodoActual != nodoObjetivo && pTotal - pPerdida > 0 && !cola.isEmpty() ) {//&& nodoActual != nodoObjetivo ) {
-			Edge e = cola.poll();
+		while ( !(nodoActual == nodoObjetivo) && pTotal - pPerdida > 0 && !cola.isEmpty() ) {
+			Edge e1 = cola.poll();
 			
-			if ( !visited[e.getDestino()] )
+			if ( !visited[e1.getDestino()] )
 			{
-				visited[e.getDestino()] = true;
-				distances[e.getDestino()] = e.getCoste();
+				System.out.println(e1.getOrigen());
+				System.out.println(e1.getDestino());
+				visited[e1.getDestino()] = true;
+				distances[e1.getDestino()] = e1.getCoste();
 
-				pPerdida += e.getCoste();
-				nodoActual = e.getDestino();
+				pPerdida += e1.getCoste();
+				nodoActual = e1.getDestino();
 				
-				List<Edge> adjsList = grafo.get(e.getDestino());
+				List<Edge> adjsList = grafo.get(e1.getDestino());
 				for (Edge e2: adjsList) {
 					
-					long newDist = e.getCoste() + e2.getCoste();
+					long newDist = e1.getCoste() + e2.getCoste();
 					
-					if ( distances[e2.getDestino()] > newDist ) {
+					if ( newDist < distances[e2.getDestino()]) {
 						distances[e2.getDestino()] = newDist;
 						cola.add(new Edge(e2.getOrigen(), e2.getDestino(), newDist));
 					}
