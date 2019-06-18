@@ -1,3 +1,7 @@
+/**
+ * Algoritmo Recorrido en ANCHURA
+ */
+
 package algGrafos;
 
 import java.util.ArrayList;

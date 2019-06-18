@@ -1,4 +1,4 @@
-package ejercicios;
+package ejer;
 
 /**
  * Divide y venceras: Ejercicio 1

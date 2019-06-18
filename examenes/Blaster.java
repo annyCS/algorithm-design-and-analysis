@@ -85,8 +85,8 @@ public class Blaster {
 					long newDist = e1.getCoste() + e2.getCoste();
 					
 					if ( newDist < distances[e2.getDestino()]) {
-						distances[e2.getDestino()] = newDist;
 						cola.add(new Edge(e2.getOrigen(), e2.getDestino(), newDist));
+						distances[e2.getDestino()] = newDist;
 					}
 				}
 			}
